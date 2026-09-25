@@ -1,0 +1,263 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SENTINEL-X</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b1020;
+    color: white;
+}
+
+header {
+    padding: 25px 20px;
+    background: #111936;
+    text-align: center;
+    border-bottom: 2px solid #26345f;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    letter-spacing: 3px;
+}
+
+header p {
+    margin: 8px 0 0;
+    color: #aeb9d8;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.status {
+    background: #121b35;
+    padding: 18px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.status span {
+    color: #42ff8a;
+    font-weight: bold;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background: #121b35;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #26345f;
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #263b78;
+    color: white;
+    font-size: 16px;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 8px;
+    border: none;
+}
+
+.result {
+    margin-top: 12px;
+    padding: 12px;
+    background: #0b1020;
+    border-radius: 8px;
+    display: none;
+}
+
+.warning {
+    color: #ff5757;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #8995b8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>SENTINEL-X</h1>
+    <p>Detect • Warn • Track • Respond</p>
+</header>
+
+<div class="container">
+
+    <div class="status">
+        System Status:
+        <span>● ONLINE</span>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h2>🚨 Emergency System</h2>
+            <p>Sensor status: <b>Monitoring</b></p>
+            <p>Emergency Light: <b id="lightStatus">OFF</b></p>
+
+            <button onclick="testEmergency()">
+                Test Emergency Light
+            </button>
+        </div>
+
+        <div class="card">
+            <h2>📷 Camera</h2>
+            <p>Camera Status: <b>Waiting</b></p>
+
+            <button onclick="cameraMessage()">
+                Open Camera
+            </button>
+
+            <div id="cameraResult" class="result"></div>
+        </div>
+
+        <div class="card">
+            <h2>🚗 Vehicle Search</h2>
+
+            <input
+                id="vehicle"
+                type="text"
+                placeholder="Enter vehicle description"
+            >
+
+            <button onclick="searchVehicle()">
+                Search
+            </button>
+
+            <div id="vehicleResult" class="result"></div>
+        </div>
+
+        <div class="card">
+            <h2>👤 Person Search</h2>
+
+            <input
+                id="person"
+                type="text"
+                placeholder="Enter description"
+            >
+
+            <button onclick="searchPerson()">
+                Search
+            </button>
+
+            <div id="personResult" class="result"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    SENTINEL-X Prototype<br>
+    Smart Emergency & Camera-Assisted Incident Tracking
+</footer>
+
+<script>
+
+function testEmergency() {
+
+    let status = document.getElementById("lightStatus");
+
+    if (status.innerText === "OFF") {
+        status.innerText = "BLINKING";
+        status.className = "warning";
+    } else {
+        status.innerText = "OFF";
+        status.className = "";
+    }
+}
+
+function cameraMessage() {
+
+    let result = document.getElementById("cameraResult");
+
+    result.style.display = "block";
+
+    result.innerHTML =
+        "Camera connection will be added when the ESP32-CAM is connected.";
+}
+
+function searchVehicle() {
+
+    let vehicle = document.getElementById("vehicle").value;
+
+    let result = document.getElementById("vehicleResult");
+
+    result.style.display = "block";
+
+    if (vehicle === "") {
+        result.innerHTML = "Please enter a vehicle description.";
+    } else {
+        result.innerHTML =
+            "Searching camera records for: <b>" +
+            vehicle +
+            "</b><br><br>" +
+            "Prototype result: No live camera database connected yet.";
+    }
+}
+
+function searchPerson() {
+
+    let person = document.getElementById("person").value;
+
+    let result = document.getElementById("personResult");
+
+    result.style.display = "block";
+
+    if (person === "") {
+        result.innerHTML = "Please enter a description.";
+    } else {
+        result.innerHTML =
+            "Searching camera records for: <b>" +
+            person +
+            "</b><br><br>" +
+            "Prototype result: No live camera database connected yet.";
+    }
+}
+
+</script>
+
+</body>
+</html>

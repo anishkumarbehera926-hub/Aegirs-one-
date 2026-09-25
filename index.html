@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IGRIS ONE | Intelligent Safety Network</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:'Rajdhani',sans-serif;
+    background:#03060b;
+    color:#eafcff;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* FUTURISTIC GRID */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+    linear-gradient(rgba(0,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,255,.035) 1px,transparent 1px);
+
+    background-size:40px 40px;
+
+    animation:gridMove 12s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes gridMove{
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:40px 40px;
+    }
+}
+
+.container{
+    width:min(1200px,94%);
+    margin:auto;
+}
+
+/* HEADER */
+
+header{
+    padding:28px 0 18px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    border-bottom:1px solid rgba(0,255,255,.15);
+}
+
+.logo{
+    font-family:'Orbitron',sans-serif;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    letter-spacing:4px;
+
+    color:#00ffff;
+
+    text-shadow:0 0 12px #00ffff;
+}
+
+.logo span{
+    color:#ff315c;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    padding:8px 15px;
+
+    border:1px solid rgba(0,255,150,.4);
+
+    border-radius:30px;
+
+    color:#00ff9d;
+
+    background:rgba(0,255,150,.06);
+
+    font-weight:700;
+
+    letter-spacing:1px;
+}
+
+.status-dot{
+    width:9px;
+    height:9px;
+
+    background:#00ff9d;
+
+    border-radius:50%;
+
+    box-shadow:0 0 15px #00ff9d;
+
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+
+    50%{
+        opacity:.35;
+        transform:scale(.7);
+    }
+
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+
+    padding:65px 15px 45px;
+}
+
+.hero h1{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:clamp(38px,8vw,82px);
+
+    letter-spacing:7px;
+
+    color:white;
+
+    text-shadow:
+    0 0 10px #00ffff,
+    0 0 35px rgba(0,255,255,.5);
+}
+
+.hero h1 span{
+    color:#00ffff;
+}
+
+.hero p{
+
+    margin-top:15px;
+
+    font-size:20px;
+
+    color:#8ba8b4;
+
+    letter-spacing:4px;
+}
+
+.hero-line{
+
+    width:180px;
+
+    height:3px;
+
+    margin:25px auto;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #00ffff,
+        transparent
+    );
+
+    box-shadow:0 0 15px #00ffff;
+}
+
+/* GRID */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+}
+
+/* CARD */
+
+.card{
+
+    position:relative;
+
+    background:rgba(8,17,27,.82);
+
+    border:1px solid rgba(0,255,255,.2);
+
+    border-radius:18px;
+
+    padding:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 0 30px rgba(0,255,255,.04);
+
+    transition:.3s;
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:rgba(0,255,255,.65);
+
+    box-shadow:0 0 35px rgba(0,255,255,.15);
+}
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:60%;
+
+    height:1px;
+
+    background:#00ffff;
+
+    box-shadow:0 0 15px #00ffff;
+
+    animation:scan 4s linear infinite;
+}
+
+@keyframes scan{
+
+    0%{
+        left:-100%;
+    }
+
+    100%{
+        left:150%;
+    }
+
+}
+
+.card-title{
+
+    font-family:'Orbitron',sans-serif;
+
+    color:#00ffff;
+
+    font-size:17px;
+
+    letter-spacing:2px;
+
+    margin-bottom:20px;
+}
+
+/* SENSOR */
+
+.sensor{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px;
+
+    margin:10px 0;
+
+    background:rgba(255,255,255,.025);
+
+    border-radius:12px;
+}
+
+.sensor-name{
+
+    font-weight:600;
+
+    font-size:17px;
+}
+
+.sensor-value{
+
+    color:#00ff9d;
+
+    font-family:'Orbitron',sans-serif;
+}
+
+/* BUTTON */
+
+button{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        90deg,
+        #00c8ff,
+        #00ffff
+    );
+
+    color:#001016;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    box-shadow:0 0 18px rgba(0,255,255,.25);
+
+    transition:.25s;
+}
+
+button:hover{
+
+    transform:scale(1.02);
+
+    box-shadow:0 0 30px rgba(0,255,255,.5);
+}
+
+/* CAMERA */
+
+.camera{
+
+    height:220px;
+
+    border-radius:12px;
+
+    background:
+
+    radial-gradient(
+        circle at 50% 45%,
+        rgba(0,255,255,.15),
+        transparent 35%
+    ),
+
+    #020508;
+
+    border:1px solid rgba(0,255,255,.2);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.camera::before{
+
+    content:"CAMERA FEED";
+
+    position:absolute;
+
+    top:12px;
+
+    left:15px;
+
+    color:#00ffff;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:11px;
+}
+
+.camera::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+
+    height:2px;
+
+    background:#00ffff;
+
+    box-shadow:0 0 12px #00ffff;
+
+    animation:cameraScan 3s linear infinite;
+}
+
+@keyframes cameraScan{
+
+    0%{
+        top:0;
+    }
+
+    100%{
+        top:100%;
+    }
+
+}
+
+.camera-icon{
+
+    font-size:50px;
+
+    opacity:.65;
+}
+
+/* SEARCH */
+
+.search-box{
+
+    display:flex;
+
+    gap:10px;
+}
+
+input{
+
+    flex:1;
+
+    background:#02070d;
+
+    color:white;
+
+    border:1px solid rgba(0,255,255,.3);
+
+    padding:14px;
+
+    border-radius:9px;
+
+    outline:none;
+
+    font-family:'Rajdhani',sans-serif;
+
+    font-size:16px;
+}
+
+input:focus{
+
+    border-color:#00ffff;
+
+    box-shadow:0 0 15px rgba(0,255,255,.15);
+}
+
+.search-box button{
+
+    width:120px;
+
+    margin:0;
+}
+
+/* NETWORK */
+
+.network{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+}
+
+.stat{
+
+    padding:18px;
+
+    text-align:center;
+
+    background:rgba(0,255,255,.035);
+
+    border:1px solid rgba(0,255,255,.12);
+
+    border-radius:12px;
+}
+
+.stat-number{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:25px;
+
+    color:#00ffff;
+}
+
+.stat-label{
+
+    color:#78909c;
+
+    margin-top:5px;
+}
+
+/* OUTPUT */
+
+#output{
+
+    margin-top:20px;
+
+    padding:15px;
+
+    border-left:3px solid #00ffff;
+
+    background:rgba(0,255,255,.04);
+
+    min-height:45px;
+
+    color:#a9eaff;
+
+    display:none;
+}
+
+/* FOOTER */
+
+footer{
+
+    text-align:center;
+
+    padding:45px 0 25px;
+
+    color:#50636c;
+
+    letter-spacing:2px;
+}
+
+footer strong{
+
+    color:#00ffff;
+}
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+    .grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .network{
+
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    header{
+
+        flex-direction:column;
+
+        gap:15px;
+    }
+
+    .hero{
+
+        padding-top:45px;
+    }
+
+    .hero p{
+
+        font-size:15px;
+
+        letter-spacing:2px;
+    }
+
+    .search-box{
+
+        flex-direction:column;
+    }
+
+    .search-box button{
+
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        IGRIS <span>ONE</span>
+    </div>
+
+    <div class="status">
+
+        <div class="status-dot"></div>
+
+        SYSTEM ONLINE
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>
+        IGRIS <span>ONE</span>
+    </h1>
+
+    <p>
+        INTELLIGENT SAFETY • DETECTION • TRACKING
+    </p>
+
+    <div class="hero-line"></div>
+
+</section>
+
+
+<!-- NETWORK STATUS -->
+
+<section class="network">
+
+    <div class="stat">
+
+        <div class="stat-number">
+            01
+        </div>
+
+        <div class="stat-label">
+            ACTIVE ZONE
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-number">
+            03
+        </div>
+
+        <div class="stat-label">
+            STREETLIGHTS
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-number">
+            02
+        </div>
+
+        <div class="stat-label">
+            SENSORS
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-number">
+            24/7
+        </div>
+
+        <div class="stat-label">
+            MONITORING
+        </div>
+
+    </div>
+
+</section>
+
+
+<br>
+
+
+<div class="grid">
+
+
+<!-- EMERGENCY SYSTEM -->
+
+<div class="card">
+
+    <div class="card-title">
+        ⚠ EMERGENCY DETECTION
+    </div>
+
+
+    <div class="sensor">
+
+        <div class="sensor-name">
+            🔥 Smoke Sensor
+        </div>
+
+        <div
+            class="sensor-value"
+            id="smoke">
+
+            NORMAL
+
+        </div>
+
+    </div>
+
+
+    <div class="sensor">
+
+        <div class="sensor-name">
+            🔊 Sound Sensor
+        </div>
+
+        <div
+            class="sensor-value"
+            id="sound">
+
+            NORMAL
+
+        </div>
+
+    </div>
+
+
+    <div class="sensor">
+
+        <div class="sensor-name">
+            🚨 Emergency Light
+        </div>
+
+        <div
+            class="sensor-value"
+            id="light">
+
+            STANDBY
+
+        </div>
+
+    </div>
+
+
+    <button onclick="testEmergency()">
+
+        TEST EMERGENCY SYSTEM
+
+    </button>
+
+</div>
+
+
+<!-- CAMERA -->
+
+<div class="card">
+
+    <div class="card-title">
+
+        ◉ LIVE CAMERA NETWORK
+
+    </div>
+
+
+    <div class="camera">
+
+        <div class="camera-icon">
+
+            📹
+
+        </div>
+
+    </div>
+
+
+    <button onclick="openCamera()">
+
+        CONNECT CAMERA
+
+    </button>
+
+</div>
+
+
+<!-- VEHICLE SEARCH -->
+
+<div class="card">
+
+    <div class="card-title">
+
+        🚗 VEHICLE SEARCH
+
+    </div>
+
+
+    <p style="color:#708892;margin-bottom:15px;">
+
+        Search recorded observations
+        using vehicle details.
+
+    </p>
+
+
+    <div class="search-box">
+
+        <input
+            id="vehicleInput"
+            placeholder="Example: Red car"
+        >
+
+        <button onclick="searchVehicle()">
+
+            SEARCH
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PERSON SEARCH -->
+
+<div class="card">
+
+    <div class="card-title">
+
+        ◉ PERSON SEARCH
+
+    </div>
+
+
+    <p style="color:#708892;margin-bottom:15px;">
+
+        Search available camera
+        observations for a possible sighting.
+
+    </p>
+
+
+    <div class="search-box">
+
+        <input
+            id="personInput"
+            placeholder="Enter description"
+        >
+
+        <button onclick="searchPerson()">
+
+            SEARCH
+
+        </button>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- OUTPUT -->
+
+<div id="output"></div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <strong>IGRIS ONE</strong>
+
+    <br><br>
+
+    DETECT • WARN • TRACK • RESPOND
+
+    <br><br>
+
+    Prototype Command Interface
+
+</footer>
+
+
+</div>
+
+
+<script>
+
+
+/* OUTPUT FUNCTION */
+
+function showOutput(message){
+
+    const output =
+        document.getElementById("output");
+
+    output.style.display = "block";
+
+    output.innerHTML = message;
+
+}
+
+
+/* EMERGENCY TEST */
+
+function testEmergency(){
+
+    const smoke =
+        document.getElementById("smoke");
+
+    const sound =
+        document.getElementById("sound");
+
+    const light =
+        document.getElementById("light");
+
+
+    smoke.innerHTML = "ALERT";
+
+    sound.innerHTML = "ALERT";
+
+    light.innerHTML = "BLINKING";
+
+
+    smoke.style.color = "#ff315c";
+
+    sound.style.color = "#ff315c";
+
+    light.style.color = "#ff315c";
+
+
+    showOutput(
+
+        "🚨 <b>EMERGENCY TEST ACTIVE</b><br><br>" +
+
+        "IGRIS ONE has detected a simulated " +
+
+        "emergency condition. The emergency " +
+
+        "warning light would activate."
+
+    );
+
+
+    setTimeout(function(){
+
+        smoke.innerHTML = "NORMAL";
+
+        sound.innerHTML = "NORMAL";
+
+        light.innerHTML = "STANDBY";
+
+
+        smoke.style.color = "#00ff9d";
+
+        sound.style.color = "#00ff9d";
+
+        light.style.color = "#00ff9d";
+
+    },5000);
+
+}
+
+
+/* CAMERA */
+
+function openCamera(){
+
+    showOutput(
+
+        "📹 <b>CAMERA CONNECTION</b><br><br>" +
+
+        "Waiting for ESP32-CAM connection..." +
+
+        "<br><br>" +
+
+        "Camera stream will appear here " +
+
+        "when the ESP32-CAM is connected."
+
+    );
+
+}
+
+
+/* VEHICLE SEARCH */
+
+function searchVehicle(){
+
+    const value =
+        document
+        .getElementById("vehicleInput")
+        .value
+        .trim();
+
+
+    if(value === ""){
+
+        showOutput(
+            "⚠ Please enter a vehicle description."
+        );
+
+        return;
+
+    }
+
+
+    showOutput(
+
+        "🔎 <b>SEARCHING CAMERA RECORDS...</b>" +
+
+        "<br><br>" +
+
+        "Query: <b>" + value + "</b>" +
+
+        "<br><br>" +
+
+        "Prototype result: No live camera " +
+
+        "database connected yet."
+
+    );
+
+}
+
+
+/* PERSON SEARCH */
+
+function searchPerson(){
+
+    const value =
+        document
+        .getElementById("personInput")
+        .value
+        .trim();
+
+
+    if(value === ""){
+
+        showOutput(
+            "⚠ Please enter a description."
+        );
+
+        return;
+
+    }
+
+
+    showOutput(
+
+        "🔎 <b>SEARCHING AVAILABLE " +
+
+        "OBSERVATIONS...</b>" +
+
+        "<br><br>" +
+
+        "Description: <b>" + value + "</b>" +
+
+        "<br><br>" +
+
+        "Prototype result: Camera database " +
+
+        "connection is pending."
+
+    );
+
+}
+
+
+</script>
+
+
+</body>
+  </html>
